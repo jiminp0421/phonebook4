@@ -20,13 +20,13 @@
 		이름(name): <input type ="text" name="name" value="${personVo.name }"> <br>
 		핸드폰(hp): <input type ="text" name="hp" value="${personVo.hp }"> <br>
 		회사(company): <input type ="text" name="company" value="${personVo.company }"> <br>
-		<input type="hidden" name="personId" value="${personVo.personId}">
+		<input type="text" name="personId" value="${personVo.personId}">
 		<button type="submit">수정</button>
 	</form>
 	
 	
 	<p>
-		<a href="/phonebook4/phone/list">리스트 바로가기</a>
+		<a href="${pageContext.request.contextPath }/phone/list">리스트 바로가기</a>
 	</p>
 
 

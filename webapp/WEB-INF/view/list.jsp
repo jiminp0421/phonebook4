@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +10,7 @@
 <body>
 	<h1>전화번호 리스트</h1>
 	<p>입력한 정보 내역입니다.</p>
-
+	${pageContext.request.contextPath }
 	<c:forEach items="${pList }" var="personVo">
 	<table border = "1">
 		<colgroup>
@@ -34,8 +31,8 @@
 				<td>${personVo.company }</td>
 			</tr>
 			<tr>
-				<td><a href="/phonebook4/phone/updateForm?personId=${personVo.personId}">수정</a></td>
-				<td><a href = "/phonebook4/phone/delete?personId=${personVo.personId}">삭제</a></td>
+				<td><a href= "${pageContext.request.contextPath }/phone/updateForm?personId=${personVo.personId}">수정</a></td>
+				<td><a href = "${pageContext.request.contextPath }/phone/delete?personId=${personVo.personId}">삭제</a></td>
 				
 				
 			</tr>
@@ -47,7 +44,7 @@
 
 	
 	<p>
-		<a href="/pb3/pbc?action=wform">추가번호 등록</a>
+		<a href="${pageContext.request.contextPath }/phone/writeForm?">추가번호 등록</a>
 	</p>
 	
 

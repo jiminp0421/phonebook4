@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,8 +20,7 @@ public class PhoneController {
 	
 	@RequestMapping(value="/writeForm", method= {RequestMethod.GET, RequestMethod.POST})
 	public String writeForm() {
-		
-		return "/WEB-INF/view/writeForm.jsp";
+		return "writeForm";
 	}
 	
 	
@@ -38,29 +38,43 @@ public class PhoneController {
 	}
 	
 	
-	@RequestMapping(value="/list", method= {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping("/list")
 	public String list(Model model) {
-		
+		System.out.println("/phone/list");
 		PhoneDao phoneDao = new PhoneDao();
 		List<PersonVo> pList = phoneDao.getPersonList();
 		System.out.println(pList.toString()); //controller가 dao를 부른다. dao에선 jdbc(sql 데이터)를 불러온다!
 		
 		
 		model.addAttribute("pList", pList);
-		return "/WEB-INF/view/list.jsp";
+		return "list";
 	}
 	
+	/*
+	//update 파라미터로 넘기는게 아니다{no} 변수로 넘기는거야 그래서  @PathVariable("no")를 쓴다.
+		@RequestMapping(value="/updateForm/{no}", method= {RequestMethod.GET, RequestMethod.POST})
+		public String updateForm(Model model, @PathVariable("no") int personId) {
+			
+			PhoneDao phoneDao = new PhoneDao();
+			PersonVo personVo = phoneDao.getPerson(personId);//끝
+			
+			model.addAttribute("personVo", personVo);
+			
+			return "/WEB-INF/view/updateForm.jsp";
+	}
+		*/
+		
 	
 	//update
 	@RequestMapping(value="/updateForm", method= {RequestMethod.GET, RequestMethod.POST})
 	public String updateForm(Model model, @RequestParam("personId") int personId) {
 		
 		PhoneDao phoneDao = new PhoneDao();
-		PersonVo personVo = phoneDao.getPerson(personId);
+		PersonVo personVo = phoneDao.getPerson(personId);//끝
 		
 		model.addAttribute("personVo", personVo);
 		
-		return "/WEB-INF/view/updateForm.jsp";
+		return "updateForm";
 	}
 	
 	
@@ -86,9 +100,6 @@ public class PhoneController {
 		
 		return "redirect:/phone/list";
 	}
-	
-	
-	
 	
 	
 

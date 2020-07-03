@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -17,14 +17,15 @@
 	</p>
 	
 	<form action="/phonebook4/phone/write" method="get">
-		이름(name): <input type ="text" name="name" value=""> <br>
-		핸드폰(hp): <input type ="text" name="hp" value=""> <br>
-		회사(company): <input type ="text" name="company" value=""> <br>
+		이름(name): <input type ="text" name="name" value="${personVo.name }"> <br>
+		핸드폰(hp): <input type ="text" name="hp" value="${personVo.hp }"> <br>
+		회사(company): <input type ="text" name="company" value="${personVo.company }"> <br>
+		
 		<button type="submit">등록</button>
 	</form>
 	
 	<p>
-		<a href="./pbc?action=list">리스트 바로가기</a>
+		<a href="${pageContext.request.contextPath }/phone/list">리스트 바로가기</a>
 	</p>
 	
 </body>
